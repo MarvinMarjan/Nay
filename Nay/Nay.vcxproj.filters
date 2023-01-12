@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{46aa2f09-7909-4f98-ae2f-689dd56d292c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\system">
+      <UniqueIdentifier>{b3243ae9-a3ea-404d-898c-29d2c78b050a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\fileobj">
+      <UniqueIdentifier>{6e70bcb1-d96e-4e77-b7e5-8ca5933dcf17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stream">
+      <UniqueIdentifier>{cad02441-9610-49ce-ba9e-530cf36b539d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stream\in">
+      <UniqueIdentifier>{8bbe33de-9805-476d-9de6-11fec0ea7922}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stream\out">
+      <UniqueIdentifier>{e54acf6e-d9dc-40fc-87e2-09350291d05d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\system\system.h">
+      <Filter>src\system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fileobj\fileobj.h">
+      <Filter>src\fileobj</Filter>
+    </ClInclude>
+    <ClInclude Include="src\system\system_args.h">
+      <Filter>src\system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fileobj\file_util.h">
+      <Filter>src\fileobj</Filter>
+    </ClInclude>
+    <ClInclude Include="src\system\system_exceptions.h">
+      <Filter>src\system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stream\out\colors.h">
+      <Filter>src\stream\out</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stream\in\input_handling.h">
+      <Filter>src\stream\in</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stream\in\editor.h">
+      <Filter>src\stream\in</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stream\in\line.h">
+      <Filter>src\stream\in</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stream\in\keymap.h">
+      <Filter>src\stream\in</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
