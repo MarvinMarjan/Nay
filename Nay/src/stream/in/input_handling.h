@@ -6,6 +6,7 @@ namespace ist
 {
 	struct cursor {
 		size_t row;
+		size_t _row;
 		size_t col;
 	};
 
@@ -16,6 +17,12 @@ namespace ist
 	// 2 - clear entire screen
 
 	inline std::string clear_display(size_t mode = 0) { return "\033[" + std::to_string(mode) + 'J'; }
+
+	// 0 - clear from cursor to end of the line
+	// 1 - clear from cursor to begginning of the line 
+	// 2 - clear entire line
+
+	inline std::string clear_line(size_t mode = 0) { return "\033[" + std::to_string(mode) + "K"; }
 	
 	inline std::string cursor_pos(size_t row = 0, size_t col = 0) { return "\033[" + std::to_string(row) + ';' + std::to_string(col) + 'H'; }
 	

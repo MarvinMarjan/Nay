@@ -32,6 +32,7 @@
     <ClInclude Include="src\system\system.h" />
     <ClInclude Include="src\system\system_args.h" />
     <ClInclude Include="src\system\system_exceptions.h" />
+    <ClInclude Include="src\util\vector_ut.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -16,9 +16,9 @@ namespace file
 			this->obj_path = filepath;
 		}
 
-		~Fileobj() { this->obj.close(); }
-		
 		Fileobj() {}
+
+		~Fileobj() { this->obj.close(); }
 
 		inline void open(std::string filepath, std::ios_base::open_mode mode = std::ios::in) {
 			if (file_exist(filepath)) 
@@ -49,6 +49,10 @@ namespace file
 			}
 
 			return content;
+		}
+
+		inline bool is_null() const { 
+			return (!this->obj.is_open());
 		}
 
 	private:

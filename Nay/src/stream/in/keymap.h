@@ -8,6 +8,8 @@ namespace ist
 		backspace = 8,
 		space = 32,
 
+		arrow = -32,
+
 		arrow_l = 75,
 		arrow_r = 77,
 		arrow_u = 72,

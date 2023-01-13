@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 	sys::sysargs args;
 	sys::set_sysargs(args, argc, argv);
 
-	sys::System system;
+	sys::System system(args);
 
 	ist::Editor editor;
 
@@ -35,22 +35,28 @@ int main(int argc, char* argv[])
 		editor = _editor;
 	}
 
-
+	ist::cursor cur;
 	char ch;
 
-	// while system state is on
+	editor.print();
+
 	while (system.is_on())
 	{
-		editor.print();
+		cur = editor.get_cursor();
 
 		if ((ch = ist::get_ch())) {
+			std::cout << ist::cursor_pos(cur._row) << ist::clear_line(2);
+
 			editor.update(ch);
 
-			std::cout << ist::cursor_pos() << ist::clear_display() << ist::clear_display(3);
+			std::cout << ist::clear_line(2);
 
-			//std::cout << std::endl << editor.get_cursor().col << " - " << editor.get_cursor().row << std::endl;
+			if (editor.get_cursor_mov() != ist::None)
+				editor.add_update_item(cur.row);
 		}
+
+		editor.print(true);
 	}
 
-	return 0;
+	return EXIT_SUCCESS;
 }
