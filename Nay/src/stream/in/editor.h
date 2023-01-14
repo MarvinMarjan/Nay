@@ -2,6 +2,7 @@
 
 #include "../../fileobj/fileobj.h"
 #include "../../util/vector_ut.h"
+#include "../../util/string_ut.h"
 #include "../in/input_handling.h"
 #include "../in/keymap.h"
 #include "line.h"
@@ -76,6 +77,18 @@ namespace ist
 						this->cursor_mov = None;
 
 					break;
+
+				case ist::backspace:
+					if (!this->lines[this->curs.row].size())
+						break;
+
+					this->lines[this->curs.row] = ut::erase(this->lines[this->curs.row].content, this->curs.col - 1);
+					this->curs.col--;
+					break;
+
+				default:
+					this->lines[this->curs.row] = ut::insert(this->lines[this->curs.row].content, ch, this->curs.col);
+					this->curs.col++;
 			}
 		}
 

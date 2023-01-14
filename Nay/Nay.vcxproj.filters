@@ -66,5 +66,8 @@
     <ClInclude Include="src\util\vector_ut.h">
       <Filter>src\util</Filter>
     </ClInclude>
+    <ClInclude Include="src\util\string_ut.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

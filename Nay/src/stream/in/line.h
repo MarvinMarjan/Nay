@@ -13,9 +13,9 @@ namespace ist
 		}
 
 		inline void operator=(std::string str) { this->content = str; }
-		inline char operator[](size_t index) const { 
-			return this->content[index]; 
-		}
+		inline void operator+=(char ch) { this->content += ch; }
+		inline void operator+=(std::string str) { this->content += str; }
+		inline char operator[](size_t index) const {return this->content[index]; }
 
 		inline size_t size() const { return this->content.size(); }
 
