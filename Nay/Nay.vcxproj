@@ -23,7 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\fileobj\fileobj.h" />
-    <ClInclude Include="src\fileobj\file_util.h" />
     <ClInclude Include="src\stream\in\editor.h" />
     <ClInclude Include="src\stream\in\input_handling.h" />
     <ClInclude Include="src\stream\in\keymap.h" />
@@ -32,7 +31,9 @@
     <ClInclude Include="src\system\system.h" />
     <ClInclude Include="src\system\system_args.h" />
     <ClInclude Include="src\system\system_exceptions.h" />
+    <ClInclude Include="src\util\file_ut.h" />
     <ClInclude Include="src\util\string_ut.h" />
+    <ClInclude Include="src\util\system_ut.h" />
     <ClInclude Include="src\util\vector_ut.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

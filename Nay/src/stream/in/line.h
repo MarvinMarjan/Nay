@@ -12,6 +12,8 @@ namespace ist
 			this->content = str;
 		}
 
+		inline operator std::string() const { return this->content; }
+
 		inline void operator=(std::string str) { this->content = str; }
 		inline void operator+=(char ch) { this->content += ch; }
 		inline void operator+=(std::string str) { this->content += str; }

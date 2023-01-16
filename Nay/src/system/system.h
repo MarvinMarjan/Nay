@@ -1,18 +1,19 @@
 #pragma once
 
 #include <iostream>
-#include <Windows.h>
-#include <strsafe.h>
 
 #include "../fileobj/fileobj.h"
-#include "../fileobj/file_util.h"
 
 #include "system_args.h"
 #include "system_exceptions.h"
 
-#include "src/stream/out/colors.h"
+#include "../stream/out/colors.h"
+#include "../stream/in/editor.h"
 
 #include "../util/string_ut.h"
+#include "../util/file_ut.h"
+#include "../util/system_ut.h"
+
 
 namespace sys
 {
@@ -30,29 +31,32 @@ namespace sys
 			this->state = SysState::On;
 			this->using_a_file = false;
 
-			set_console_title(L"Nay - Untitled");
+			ut::set_console_title(L"Nay - Untitled");
 		}
 
 		System(std::string initial_file_path) {
 			this->state = SysState::On;
 
-			if (file::file_exist(initial_file_path))
+			if (ut::file_exist(initial_file_path))
 				this->initial_file.open(initial_file_path);
 
 			else
 				this->abort(FileNotFound, initial_file_path);
 
+			this->full_file_str = ut::read_str(this->initial_file.get_obj_path());
+
 			std::wstring wstr_path = ut::to_wstring(initial_file_path);
 			std::wstring title = L"Nay - " + wstr_path;
 
-			set_console_title(title.c_str());
+			ut::set_console_title(title.c_str());
 		}
 
 		System(sysargs args) {
 			this->state = SysState::On;
-			
+			this->initial_file_path = args.initial_file_path;
+
 			if (args.initial_file_path != "") {
-				if (file::file_exist(args.initial_file_path))
+				if (ut::file_exist(args.initial_file_path))
 					this->initial_file.open(args.initial_file_path);
 
 				else
@@ -62,10 +66,42 @@ namespace sys
 			else
 				this->using_a_file = false;
 
+			this->full_file_str = ut::read_str(this->initial_file.get_obj_path());
+
 			std::wstring wstr_path = ut::to_wstring(args.initial_file_path);
 			std::wstring title = L"Nay - " + wstr_path;
 
-			set_console_title(title.c_str());
+			ut::set_console_title(title.c_str());
+		}
+		
+		inline void update(ist::Editor* editor, char ch)
+		{
+			this->current_str = ut::concat_str_vec(
+				ut::map<ist::Line, std::string>(editor->lines, [] (ist::Line line) -> std::string {
+					return line.content;
+				})
+			);
+
+			if ((char)ch == ist::ctrl_s)
+				this->save_file();
+
+			this->is_unsaved = (this->current_str != this->full_file_str);
+
+			std::wstring wstr_path = ut::to_wstring(this->initial_file_path);
+			std::wstring title;
+
+			if (this->is_unsaved)
+				title = L"Nay - " + wstr_path + L"*";
+
+			else
+				title = L"Nay - " + wstr_path;
+
+			ut::set_console_title(title.c_str());
+		}
+
+		inline void save_file() {
+			ut::write(this->initial_file_path, this->current_str);
+			this->full_file_str = this->current_str;
 		}
 
 		inline void throw_exception(Exception exception) const {
@@ -104,22 +140,12 @@ namespace sys
 
 		SysState state;
 		file::Fileobj initial_file;
+		std::string initial_file_path;
+
+		std::string full_file_str;
+		std::string current_str;
 
 		bool using_a_file = true;
+		bool is_unsaved = false;
 	};
-
-	inline void set_mouse_visible(bool state) {
-		const CONSOLE_CURSOR_INFO c_info = { 1, state };
-		SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &c_info);
-	}
-
-	inline void set_console_title(LPCWSTR title) {
-		TCHAR console_title[MAX_PATH];
-		TCHAR current_title[MAX_PATH];
-
-
-		StringCchPrintf(console_title, MAX_PATH, title, current_title);
-
-		SetConsoleTitle(console_title);
-	}
 }

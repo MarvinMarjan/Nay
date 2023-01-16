@@ -27,4 +27,23 @@ namespace ut
 		for (size_t i = 0; i < arr.size(); i++)
 			func(arr[i]);
 	}
+
+	template<typename T1, typename T2>
+	inline std::vector<T2> map(std::vector<T1> arr, T2 (*func)(T1)) {
+		std::vector<T2> arr2;
+
+		for (size_t i = 0; i < arr.size(); i++)
+			arr2.push_back(func(arr[i]));
+
+		return arr2;
+	}
+
+	inline std::string concat_str_vec(std::vector<std::string> arr, std::string separator = "\n") {
+		std::string str = "";
+
+		for (size_t i = 0; i < arr.size(); i++)
+			str += arr[i] + ((i + 1 >= arr.size()) ? "" : separator);
+
+		return str;
+	}
 }

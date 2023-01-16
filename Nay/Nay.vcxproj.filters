@@ -42,14 +42,8 @@
     <ClInclude Include="src\system\system_args.h">
       <Filter>src\system</Filter>
     </ClInclude>
-    <ClInclude Include="src\fileobj\file_util.h">
-      <Filter>src\fileobj</Filter>
-    </ClInclude>
     <ClInclude Include="src\system\system_exceptions.h">
       <Filter>src\system</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stream\out\colors.h">
-      <Filter>src\stream\out</Filter>
     </ClInclude>
     <ClInclude Include="src\stream\in\input_handling.h">
       <Filter>src\stream\in</Filter>
@@ -67,6 +61,15 @@
       <Filter>src\util</Filter>
     </ClInclude>
     <ClInclude Include="src\util\string_ut.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stream\out\colors.h">
+      <Filter>src\stream\out</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\file_ut.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\system_ut.h">
       <Filter>src\util</Filter>
     </ClInclude>
   </ItemGroup>

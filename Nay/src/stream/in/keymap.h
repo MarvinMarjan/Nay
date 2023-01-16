@@ -4,6 +4,8 @@ namespace ist
 {
 	enum KeyCode
 	{
+		ctrl_s = 19,
+
 		enter = 13,
 		backspace = 8,
 		space = 32,

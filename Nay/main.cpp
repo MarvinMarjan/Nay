@@ -1,4 +1,8 @@
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+
 #include <conio.h>
 
 #include "src/system/system.h"
@@ -16,7 +20,7 @@ inline std::ostream& operator<<(std::ostream& os, ist::Line* line)
 
 int main(int argc, char* argv[])
 {
-	sys::set_mouse_visible(false);
+	ut::set_mouse_visible(false);
 
 	sys::sysargs args;
 	sys::set_sysargs(args, argc, argv);
@@ -47,16 +51,17 @@ int main(int argc, char* argv[])
 		if ((ch = ist::get_ch())) {
 			std::cout << ist::cursor_pos(cur._row) << ist::clear_line(2);
 
-			editor.update(ch);
-
 			std::cout << ist::clear_line(2);
 
+			editor.update(ch);
+			
 			if (editor.get_cursor_mov() != ist::None)
 				editor.add_update_item(cur.row);
 		}
 
 		editor.print(true);
+		system.update(&editor, ch);	
 	}
-
+	
 	return EXIT_SUCCESS;
 }
