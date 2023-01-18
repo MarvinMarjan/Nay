@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
 	sys::sysargs args;
 	sys::set_sysargs(args, argc, argv);
 
-	sys::System system(args);
+	sys::System system;
 
 	ist::Editor editor;
 
@@ -38,6 +38,8 @@ int main(int argc, char* argv[])
 		ist::Editor _editor;
 		editor = _editor;
 	}
+
+	system.set_editor(&editor);
 
 	ist::cursor cur;
 	char ch;
@@ -60,7 +62,7 @@ int main(int argc, char* argv[])
 		}
 
 		editor.print(true);
-		system.update(&editor, ch);	
+		system.update(ch);	
 	}
 	
 	return EXIT_SUCCESS;
